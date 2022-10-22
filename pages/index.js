@@ -17,7 +17,7 @@ export default function Home(props) {
   return (
     <div>
         <h1>cybernetic stream</h1>
-      <MainDataGrid/>
+      <MainDataGrid data = {props.allUnitsData}/>
     </div>
   )
 }
