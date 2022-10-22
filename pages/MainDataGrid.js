@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import {fetchAllUnits} from "./api/DataFetching.mjs";
-
+import {DataGridPremium} from "@mui/x-data-grid-premium";
 
 const columns = [
-    { field: 'name', headerName: 'Name', width: 150 },
+    { field: 'name', headerName: 'Name', width: 250 },
     { field: 'id', headerName: 'index', width: 150 },
     { field: 'applicationsOpen', headerName: 'applications open', width: 150 },
 ];
@@ -24,7 +24,7 @@ export default function MainDataGrid(props) {
     }
     return (
         <div style={{ height: "80vh", width: '90%', marginLeft: "auto", marginRight: "auto", marginTop: "2.5vh" }}>
-            <DataGrid rows={rows} columns={columns} />
+            <DataGridPremium rows={rows} columns={columns} />
         </div>
     );
 }
