@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import {fetchAllUnits} from "./api/DataFetching.mjs";
+
 
 const rows = [
     { id: 1, col1: 'Hello', col2: 'World' },
@@ -12,7 +14,7 @@ const columns = [
     { field: 'col2', headerName: 'Column 2', width: 150 },
 ];
 
-export default function App() {
+export default function MainDataGrid() {
     return (
         <div style={{ height: "80vh", width: '75%', marginLeft: "auto", marginRight: "auto", marginTop: "2.5vh" }}>
             <DataGrid rows={rows} columns={columns} />

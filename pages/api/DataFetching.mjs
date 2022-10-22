@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getFirestore, query, where, collection, getDocs} from "firebase/firestore";
+import {getFirestore, query, where, collection, getDocs } from "firebase/firestore";
 
 /// INITIALIZE fire FIREBASE and FIRESTORE
 const firebaseConfig = {
@@ -17,7 +17,7 @@ const firestore = getFirestore()
 
 const allUnitsCollection = collection(firestore, "/units/")
 
-fetchAllUnits().then((x)=> console.log(x))
+
 export async function fetchAllUnits() {
     return new Promise(function(resolve, reject) {
         getDocs(allUnitsCollection).then(snapshot => {
@@ -28,30 +28,35 @@ export async function fetchAllUnits() {
     })
 }
 
-function getCollection(propertyID, collectionID) {
-    return new Promise(function(resolve, reject){
-        resolve({one: 23})
-    })
-
-}
-
 export async function fetchAllUnitsDataObj(idArray) {
+    let returnObj = {};
+    for (let elem in idArray) {
+        returnObj[idArray[elem]] = await getAllDataSpecificProperty(idArray[elem]).then(x=> JSON.stringify(x))
+    }
     return new Promise(function(resolve, reject) {
-        getDocs(allUnitsCollection).then(snapshot => {
-            let returnObj = {};
-            for (let elem in idArray){
-                returnObj[idArray[elem]] = getAllDataSpecificProperty(idArray[elem])
-            }
             resolve(returnObj)
-        })
     })
 }
-
 export async function getAllDataSpecificProperty(propertyID){
+    let info = await getCollection(propertyID, "info").then((x)=> JSON.stringify(x))
+    let payments = await getCollection(propertyID, "payments").then((x)=> JSON.stringify(x))
+
     return new Promise(function(resolve, reject){
-        propertyID = "18572 Cull Canyon Rd"
-        let returnObj = {info: getCollection(propertyID, "info"), payments: getCollection(propertyID,"payments") }
+        let returnObj = {info , payments }
         resolve(returnObj)
     })
+}
+
+async function getCollection(propertyID, collectionID) {
+    let returnObj = {}
+    const querySnapshot = await getDocs(collection(firestore,'/units/' + propertyID+"/"+collectionID+"/"));
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        returnObj[doc.id] = doc.data()
+    });
+    return new Promise(function(resolve, reject){
+        resolve(returnObj)
+    })
+
 }
 

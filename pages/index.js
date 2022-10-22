@@ -1,9 +1,19 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import MainDataGrid from "./MainDataGrid";
+import MainDataGrid from "./MainDataGrid.js";
+import {fetchAllUnits} from "./api/DataFetching.mjs";
 
-export default function Home() {
+export async function getStaticProps(){
+    let allUnitsData = await fetchAllUnits()
+    return{
+        props: {allUnitsData},
+        revalidate: 1
+    }
+}
+
+
+export default function Home(props) {
+
+    console.log(props.allUnitsData)
+    console.log(props.allUnitsData)
   return (
     <div>
         <h1>cybernetic stream</h1>
