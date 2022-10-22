@@ -23,7 +23,7 @@ export default function MainDataGrid(props) {
         index++;
     }
     return (
-        <div style={{ height: "80vh", width: '75%', marginLeft: "auto", marginRight: "auto", marginTop: "2.5vh" }}>
+        <div style={{ height: "80vh", width: '90%', marginLeft: "auto", marginRight: "auto", marginTop: "2.5vh" }}>
             <DataGrid rows={rows} columns={columns} />
         </div>
     );
