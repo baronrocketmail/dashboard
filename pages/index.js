@@ -11,8 +11,6 @@ export async function getStaticProps(){
 
 
 export default function Home(props) {
-
-    console.log(props.allUnitsData)
     console.log(props.allUnitsData)
   return (
     <div>
