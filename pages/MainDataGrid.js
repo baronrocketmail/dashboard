@@ -28,7 +28,7 @@ export default function MainDataGrid(props) {
         <div>
 
         <div style={{ height: "100vh", width: '100%', marginLeft: "auto", marginRight: "auto", marginTop: "auto", marginBottom: "auto" }}>
-            <DataGridPremium rows={rows} columns={columns}  components={{ Toolbar: GridToolbar }}/>
+            <DataGridPremium disableSelectionOnClick checkboxSelection rows={rows} columns={columns}  components={{ Toolbar: GridToolbar }}/>
         </div>
 
         </div>
