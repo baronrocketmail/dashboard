@@ -15,6 +15,14 @@ export default function MainDataGrid(props) {
     let rows = []
 
     let index = 0
+    for(let elem in props.data) {
+        let propertyInfo = props.data[elem].info.info
+        propertyInfo.id = index
+        console.log(props.data[elem].info.info)
+        rows.push(propertyInfo)
+        index++
+    }
+
 
     return (
         <div style={{ height: "80vh", width: '90%', marginLeft: "auto", marginRight: "auto", marginTop: "2.5vh" }}>
