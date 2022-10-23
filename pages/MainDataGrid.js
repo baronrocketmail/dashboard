@@ -10,18 +10,12 @@ const columns = [
 ];
 
 export default function MainDataGrid(props) {
+    console.log(props.data)
+
     let rows = []
 
     let index = 0
 
-    for(let key in props.data){
-        let infoCollection = JSON.parse(props.data[key]).info
-        let info = JSON.parse(infoCollection).info
-        console.log(info)
-
-        rows.push({id: index, name: key, applicationsOpen: info.applicationsOpen})
-        index++;
-    }
     return (
         <div style={{ height: "80vh", width: '90%', marginLeft: "auto", marginRight: "auto", marginTop: "2.5vh" }}>
             <DataGridPremium rows={rows} columns={columns} />

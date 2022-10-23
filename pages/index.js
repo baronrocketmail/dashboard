@@ -11,7 +11,7 @@ export async function getStaticProps(){
 
 
 export default function Home(props) {
-    console.log(props.allUnitsData)
+
   return (
     <div>
         <h1>cybernetic stream</h1>

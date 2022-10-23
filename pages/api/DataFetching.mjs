@@ -17,7 +17,6 @@ const firestore = getFirestore()
 
 const allUnitsCollection = collection(firestore, "/units/")
 
-
 export async function fetchAllUnits() {
     return new Promise(function(resolve, reject) {
         getDocs(allUnitsCollection).then(snapshot => {
@@ -31,18 +30,20 @@ export async function fetchAllUnits() {
 export async function fetchAllUnitsDataObj(idArray) {
     let returnObj = {};
     for (let elem in idArray) {
-        returnObj[idArray[elem]] = await getAllDataSpecificProperty(idArray[elem]).then(x=> JSON.stringify(x))
+        let JSONstring = await getAllDataSpecificProperty(idArray[elem]).then(x=> JSON.stringify(x))
+        returnObj[idArray[elem]] = JSON.parse(JSONstring)
     }
     return new Promise(function(resolve, reject) {
             resolve(returnObj)
     })
 }
+
 export async function getAllDataSpecificProperty(propertyID){
     let info = await getCollection(propertyID, "info").then((x)=> JSON.stringify(x))
     let payments = await getCollection(propertyID, "payments").then((x)=> JSON.stringify(x))
 
     return new Promise(function(resolve, reject){
-        let returnObj = {info , payments }
+        let returnObj = {info: JSON.parse(info) , payments: JSON.parse(payments) }
         resolve(returnObj)
     })
 }
