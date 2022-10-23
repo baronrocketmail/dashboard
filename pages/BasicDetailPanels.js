@@ -80,10 +80,10 @@ DetailPanelContent.propTypes = {
 };
 
 const columns = [
-    { field: 'id', headerName: 'Order ID' },
-    { field: 'customer', headerName: 'Customer', width: 200 },
-    { field: 'date', type: 'date', headerName: 'Placed at' },
-    { field: 'currency', headerName: 'Currency' },
+    { field: 'id', headerName: 'Order ID' , editable: true},
+    { field: 'customer', headerName: 'Customer', width: 200 , editable: true},
+    { field: 'date', type: 'date', headerName: 'Placed at', editable: true },
+    { field: 'currency', headerName: 'Currency', editable: true },
     {
         field: 'total',
         type: 'number',
@@ -177,8 +177,9 @@ export default function BasicDetailPanels() {
     const getDetailPanelHeight = React.useCallback(() => 400, []);
 
     return (
-        <Box sx={{ width: '100%', height: 400 }}>
+        <Box sx={{ width: '100%', height: "100vh" }}>
             <DataGridPro
+                experimentalFeatures={{newEditingApi: true}}
                 disableSelectionOnClick
                 checkboxSelection
                 columns={columns}

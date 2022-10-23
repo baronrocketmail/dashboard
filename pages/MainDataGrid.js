@@ -4,9 +4,9 @@ import {fetchAllUnits} from "./api/DataFetching.mjs";
 import {DataGridPremium} from "@mui/x-data-grid-premium";
 
 const columns = [
-    { field: 'name', headerName: 'Name', width: 250 },
-    { field: 'id', headerName: 'index', width: 150 },
-    { field: 'applicationsOpen', headerName: 'applications open', width: 150 },
+    { field: 'name', headerName: 'Name', width: 250, editable: true },
+    { field: 'id', headerName: 'index', width: 150, editable: true },
+    { field: 'applicationsOpen', headerName: 'applications open', width: 150, editable: true },
 ];
 
 export default function MainDataGrid(props) {
@@ -18,6 +18,7 @@ export default function MainDataGrid(props) {
     for(let elem in props.data) {
         let propertyInfo = props.data[elem].info.info
         propertyInfo.id = index
+        propertyInfo.editable = true
         console.log(props.data[elem].info.info)
         rows.push(propertyInfo)
         index++
@@ -27,10 +28,16 @@ export default function MainDataGrid(props) {
     return (
         <div>
 
-        <div style={{ height: "100vh", width: '100%', marginLeft: "auto", marginRight: "auto", marginTop: "auto", marginBottom: "auto" }}>
-            <DataGridPremium disableSelectionOnClick checkboxSelection rows={rows} columns={columns}  components={{ Toolbar: GridToolbar }}/>
+        <div style={{  backgroundColor: "white", height: "100vh", width: '100%', marginLeft: "auto", marginRight: "auto", marginTop: "auto", marginBottom: "auto" }}>
+            <DataGridPremium getDetailPanelContent={Head} rowReordering disableSelectionOnClick checkboxSelection rows={rows} columns={columns}  components={{ Toolbar: GridToolbar  }}/>
         </div>
 
         </div>
     );
+}
+
+function Head(){
+    return(
+        <h1>huil</h1>
+    )
 }
