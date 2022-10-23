@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import {DataGrid, GridRowsProp, GridColDef, GridToolbar} from '@mui/x-data-grid';
 import {fetchAllUnits} from "./api/DataFetching.mjs";
 import {DataGridPremium} from "@mui/x-data-grid-premium";
 
@@ -25,8 +25,9 @@ export default function MainDataGrid(props) {
 
 
     return (
+
         <div style={{ height: "80vh", width: '90%', marginLeft: "auto", marginRight: "auto", marginTop: "2.5vh" }}>
-            <DataGridPremium rows={rows} columns={columns} />
+            <DataGridPremium rows={rows} columns={columns}  components={{ Toolbar: GridToolbar }}/>
         </div>
     );
 }
