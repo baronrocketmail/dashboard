@@ -28,6 +28,7 @@ export default function MainDataGrid(props) {
 
         <div style={{ height: "80vh", width: '90%', marginLeft: "auto", marginRight: "auto", marginTop: "2.5vh" }}>
             <DataGridPremium rows={rows} columns={columns}  components={{ Toolbar: GridToolbar }}/>
+            <h1>ds</h1>
         </div>
     );
 }
